@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bimabagaskhoro.assigment2.R
@@ -38,8 +39,8 @@ class MainFragment : Fragment() {
         } else {
             binding.apply {
                 btnNext.setOnClickListener {
-                    val email = edtName.text.toString()
-                    if (email.isNullOrEmpty()) {
+                    val name = edtName.text.toString()
+                    if (name.isNullOrEmpty()) {
                         edtName.error = "Please field your name"
                         edtName.requestFocus()
                     } else {
@@ -47,8 +48,23 @@ class MainFragment : Fragment() {
                         findNavController().navigate(R.id.action_mainFragment_to_chooseFragment)
                     }
                 }
+
+                btnCheck.setOnClickListener {
+                    val input = edtPalindrome.text.toString()
+                    if (isPalindrome(input)) {
+                        Toast.makeText(context, "$input is a Palindrome", Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(context, "$input is not a Palindrome", Toast.LENGTH_LONG).show()
+                    }
+                }
             }
         }
+    }
+
+    private fun isPalindrome(sentence: String): Boolean {
+        val stringBuilder = StringBuilder(sentence)
+        val reverseSentence = stringBuilder.reverse().toString()
+        return sentence.equals(reverseSentence, ignoreCase = true)
     }
 
     override fun onDestroy() {

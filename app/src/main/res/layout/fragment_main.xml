@@ -45,7 +45,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         app:cardCornerRadius="16dp"
@@ -87,20 +87,47 @@
                 app:layout_constraintStart_toStartOf="@+id/circleImageView"
                 app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
 
-            <Button
-                android:id="@+id/btn_next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="32dp"
-                android:background="@drawable/custom_button"
-                android:text="@string/next"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <EditText
+                android:id="@+id/edt_palindrome"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/custom_input"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/type_the_text_palindrome"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/edt_name"
                 app:layout_constraintStart_toStartOf="@+id/edt_name"
                 app:layout_constraintTop_toBottomOf="@+id/edt_name" />
+
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/custom_button"
+                android:text="@string/next"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/edt_palindrome"
+                app:layout_constraintTop_toBottomOf="@+id/edt_palindrome" />
+
+            <Button
+                android:id="@+id/btn_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_button"
+                android:text="@string/check"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_next"
+                app:layout_constraintEnd_toEndOf="@+id/edt_palindrome"
+                app:layout_constraintStart_toEndOf="@+id/btn_next"
+                app:layout_constraintTop_toTopOf="@+id/btn_next" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
