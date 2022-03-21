@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bimabagaskhoro.assigment2.R
 import com.bimabagaskhoro.assigment2.data.Resource
@@ -35,15 +36,17 @@ class GuestFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
-            val tourismAdapter = GuestAdapter()
-
+            val guestAdapter = GuestAdapter()
+            guestAdapter.onItemClick = {
+                findNavController().navigate(R.id.action_guestFragment_to_chooseFragment)
+            }
             viewModel.guest.observe(viewLifecycleOwner, { tourism ->
                 if (tourism != null) {
                     when (tourism) {
                         is Resource.Loading -> binding.progressbar.visibility = View.VISIBLE
                         is Resource.Success -> {
                             binding.progressbar.visibility = View.GONE
-                            tourismAdapter.setData(tourism.data)
+                            guestAdapter.setData(tourism.data)
                         }
                         is Resource.Error -> {
                             binding.progressbar.visibility = View.VISIBLE
@@ -55,7 +58,7 @@ class GuestFragment : Fragment() {
             binding.apply {
                 rvGuest.layoutManager =  GridLayoutManager(context, 2)
                 rvGuest.setHasFixedSize(true)
-                rvGuest.adapter = tourismAdapter
+                rvGuest.adapter = guestAdapter
                 imgBack.setOnClickListener {
                     it.findNavController().navigate(R.id.action_guestFragment_to_chooseFragment)
                 }
